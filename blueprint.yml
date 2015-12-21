@@ -1,0 +1,6 @@
+version: 1.0
+name: cmp-test-framework
+
+build:
+- name: build-maven
+  type: maven
