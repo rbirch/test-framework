@@ -1,4 +1,4 @@
-package org.familysearch.qa;
+package org.familysearch.cmp.qa;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;

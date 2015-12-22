@@ -1,4 +1,4 @@
-package org.familysearch.qa.util;
+package org.familysearch.cmp.qa.util;
 
 import org.familysearch.sas.client.Base64;
 import org.familysearch.sas.client.ObjectRequester;

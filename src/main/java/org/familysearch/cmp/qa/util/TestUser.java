@@ -1,4 +1,4 @@
-package org.familysearch.qa.util;
+package org.familysearch.cmp.qa.util;
 
 import feign.*;
 import feign.auth.BasicAuthRequestInterceptor;

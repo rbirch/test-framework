@@ -1,4 +1,4 @@
-package org.familysearch.qa.util;
+package org.familysearch.cmp.qa.util;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
