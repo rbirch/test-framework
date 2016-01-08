@@ -5,7 +5,7 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
-import org.familysearch.qa.testuserprovider.TestUser;
+import org.familysearch.cmp.qa.util.TestUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeClass;
@@ -18,7 +18,7 @@ import static org.testng.Assert.assertEquals;
 /**
  * Created by rbirch on 12/7/2015.
  */
-public class AbstractAcceptanceTest {
+public abstract class AbstractAcceptanceTest implements MessagingAcceptanceTest {
   protected final int GET    = 0;
   protected final int POST   = 1;
   protected final int PUT    = 2;
@@ -59,8 +59,10 @@ public class AbstractAcceptanceTest {
     config.getFeatures().put(ClientConfig.FEATURE_DISABLE_XML_SECURITY, true);
 
     jerseyClient = Client.create(config);
+  }
 
-
+  protected WebResource resourceForPath(String path) {
+    return jerseyClient.resource(baseUrl + basePath + path);
   }
 
   protected ClientResponse getResponse(WebResource resource, int method, String sessionId, String... jsonPayload) {
