@@ -5,6 +5,7 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
+import org.codehaus.jettison.json.JSONObject;
 import org.familysearch.cmp.qa.util.TestUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.testng.annotations.Parameters;
 import javax.ws.rs.core.MediaType;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by rbirch on 12/7/2015.
@@ -97,6 +99,15 @@ public abstract class AbstractAcceptanceTest implements MessagingAcceptanceTest 
   protected void assertResponse(ClientResponse clientResponse, int expectedResponseCode) {
     assertEquals(clientResponse.getStatus(), expectedResponseCode,
       String.format("The http response had an incorrect status - message: %s", clientResponse));
+  }
+
+  /*
+   * @param json - Jettison JSON object
+   * @param fieldName - the name of the field to verify in the JSON object
+   * asserts that fieldName is a field in the JSON object
+   */
+  protected void assertJsonResponseField(JSONObject json, String fieldName) {
+    assertTrue(json.has(fieldName), String.format("The response didn't include the %s field", fieldName));
   }
 
 }

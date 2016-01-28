@@ -21,6 +21,8 @@ public class TestUser {
   private String displayName;
   private String userId;
 
+  public enum Environment { integration, beta, staging, production }
+
   public String getSessionId() { return sessionId; }
   public String getDisplayName() { return displayName; }
   public String getUserName() { return userName; }
@@ -38,10 +40,10 @@ public class TestUser {
     this.userId = id;
   }
 
-  public TestUser() { }
+  public TestUser(Environment environment, String userName, String password) {
+    String env = environment.toString();
+    String basicAuthenticationUrl = "https://{env}.familysearch.org/links-gadget-service".replace("{env}", env);
 
-  public TestUser(String userName, String password) {
-    String basicAuthenticationUrl = "https://beta.familysearch.org/links-gadget-service";
     String apiKey = "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK";
 
     AuthenticationDto authenticationDto =

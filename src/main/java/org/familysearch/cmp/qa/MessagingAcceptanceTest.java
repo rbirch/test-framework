@@ -7,9 +7,6 @@ import org.familysearch.cmp.qa.util.TestUser;
  */
 public interface MessagingAcceptanceTest {
 
-  public String getApiBasePathDirect( );
-  public String setApiBasePathDirect( );
-
-  public String getApiBasePathThroughDLB( );
-  public String setApiBasePathThroughDLB( );
+  public void getApiBasePathDirect( );
+  public void getApiBasePathThroughDLB( );
 }
