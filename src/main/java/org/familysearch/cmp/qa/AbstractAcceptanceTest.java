@@ -21,11 +21,7 @@ import static org.testng.Assert.assertTrue;
  * Created by rbirch on 12/7/2015.
  */
 public abstract class AbstractAcceptanceTest implements MessagingAcceptanceTest {
-  protected final int GET    = 0;
-  protected final int POST   = 1;
-  protected final int PUT    = 2;
-  protected final int PATCH  = 3;
-  protected final int DELETE = 4;
+  protected enum Method { GET, POST, PUT, PATCH, DELETE }
 
   protected Client jerseyClient;
 
@@ -39,7 +35,6 @@ public abstract class AbstractAcceptanceTest implements MessagingAcceptanceTest 
 
   protected String baseUrl;
   protected String basePath;
-  protected String sessionId;
 
 
   @BeforeClass(alwaysRun = true)
@@ -67,7 +62,7 @@ public abstract class AbstractAcceptanceTest implements MessagingAcceptanceTest 
     return jerseyClient.resource(baseUrl + basePath + path);
   }
 
-  protected ClientResponse getResponse(WebResource resource, int method, String sessionId, String... jsonPayload) {
+  protected ClientResponse getResponse(WebResource resource, Method method, String sessionId, String... jsonPayload) {
     WebResource.Builder builder = resource.accept(
       MediaType.APPLICATION_JSON)
       .header("Content-Type", "application/json");
