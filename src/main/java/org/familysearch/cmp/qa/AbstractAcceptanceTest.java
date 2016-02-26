@@ -20,15 +20,12 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by rbirch on 12/7/2015.
  */
-public abstract class AbstractAcceptanceTest implements MessagingAcceptanceTest {
+public abstract class AbstractAcceptanceTest {
   protected enum Method { GET, POST, PUT, PATCH, DELETE }
 
   protected Client jerseyClient;
 
   protected final Logger log = LoggerFactory.getLogger(this.getClass());
-
-  protected static String BASE_PATH_DIRECT;
-  protected static String BASE_PATH_THROUGH_DLB;
 
   protected static TestUser receivingUser;
   protected static TestUser sendingUser;
@@ -43,10 +40,10 @@ public abstract class AbstractAcceptanceTest implements MessagingAcceptanceTest 
     this.baseUrl = baseUrl;
 
     if(baseUrl.contains("familysearch.org")) {
-      this.basePath = BASE_PATH_THROUGH_DLB;
+      this.basePath = getBasePathThroughDlb();
     }
     else {
-      this.basePath = BASE_PATH_DIRECT;
+      this.basePath = getBasePathDirect();
     }
 
     log.info("FS_SYSTEM_NAME property: " + System.getProperty("FS_SYSTEM_NAME"));
@@ -104,5 +101,9 @@ public abstract class AbstractAcceptanceTest implements MessagingAcceptanceTest 
   protected void assertJsonResponseField(JSONObject json, String fieldName) {
     assertTrue(json.has(fieldName), String.format("The response didn't include the %s field", fieldName));
   }
+
+  protected abstract String getBasePathThroughDlb();
+
+  protected abstract String getBasePathDirect();
 
 }
