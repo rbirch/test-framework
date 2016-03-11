@@ -21,7 +21,7 @@ import static org.testng.Assert.assertTrue;
  * Created by rbirch on 12/7/2015.
  */
 public abstract class AbstractAcceptanceTest {
-  protected enum Method {GET, POST, PUT, PATCH, DELETE}
+  public enum Method {GET, POST, PUT, PATCH, DELETE}
 
   protected Client jerseyClient;
 
@@ -71,11 +71,11 @@ public abstract class AbstractAcceptanceTest {
     jerseyClient = Client.create(config);
   }
 
-  protected WebResource resourceForPath(String path) {
+  public WebResource resourceForPath(String path) {
     return jerseyClient.resource(domain + basePath + path);
   }
 
-  protected ClientResponse getResponse(WebResource resource, Method method, String sessionId, String... jsonPayload) {
+  public ClientResponse getResponse(WebResource resource, Method method, String sessionId, String... jsonPayload) {
     WebResource.Builder builder = resource.accept(
         MediaType.APPLICATION_JSON)
         .header("Content-Type", "application/json");
@@ -105,7 +105,7 @@ public abstract class AbstractAcceptanceTest {
    * @param clientResponse - Jersey ClientResponse object
    * asserts that expectedResponseCode response is received
    */
-  protected void assertResponse(ClientResponse clientResponse, int expectedResponseCode) {
+  public void assertResponse(ClientResponse clientResponse, int expectedResponseCode) {
     assertEquals(clientResponse.getStatus(), expectedResponseCode,
       String.format("The http response had an incorrect status - message: %s", clientResponse));
   }
@@ -115,7 +115,7 @@ public abstract class AbstractAcceptanceTest {
    * @param fieldName - the name of the field to verify in the JSON object
    * asserts that fieldName is a field in the JSON object
    */
-  protected void assertJsonResponseField(JSONObject json, String fieldName) {
+  public void assertJsonResponseField(JSONObject json, String fieldName) {
     assertTrue(json.has(fieldName), String.format("The response didn't include the %s field", fieldName));
   }
 
@@ -125,7 +125,7 @@ public abstract class AbstractAcceptanceTest {
   
   protected abstract String getBlueprintServiceNameOfTargetService();
 
-  protected String getDomain() {
+  public String getDomain() {
     return this.domain;
   }
 
