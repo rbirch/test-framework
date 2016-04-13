@@ -1,7 +1,7 @@
 package org.familysearch.cmp.qa.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.RandomStringUtils;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import java.util.Random;
 
