@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.familysearch</groupId>
     <artifactId>root</artifactId>
-    <version>1.10.b78</version>
+    <version>1.10.b85</version>
   </parent>
   
   <groupId>org.familysearch.qa</groupId>
